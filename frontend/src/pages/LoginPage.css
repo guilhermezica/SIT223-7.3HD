@@ -1,0 +1,30 @@
+.login-page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    color: var(--text);
+    max-width: 420px;
+    margin: 48px auto;
+    padding: 0 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    max-width: 400px;
+}
+
+/*  Have elements of the input group displayed vertically */
+
+.form-group form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

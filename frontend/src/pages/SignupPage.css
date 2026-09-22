@@ -1,0 +1,26 @@
+/* Styling for header of signup page page */
+
+.signup-page {
+    max-width: 420px;
+    margin: 48px auto;
+    padding: 0 24px;
+}
+
+.header h1 {
+    font-family: monospace;
+    text-align: center;
+    padding: 20px;
+    color: var(--text);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-bottom: 15px;
+    max-width: 400px;
+}
+
+.form-group button {
+    margin-top: 10px;
+}

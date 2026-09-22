@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bill Zica</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <a href="index.html">Home</a>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </ul>
+        </nav>
+        <div class = "banner">
+            <img src='image1.jpg' alt="Background Image" width=auto height="450">
+            <div class = "banner-text">
+                <span class="name">Hey, I'm Bill</span>           
+            </div>
+        </div>
+        <section>
+            <form id="subscribe-form">
+                <label for="email">Subscribe to my newsletter:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="message"></p>
+
+        </section>
+        <script>
+            document.getElementById('subscribe-form').addEventListener('submit', async (event) => { // listening for form submit
+                event.preventDefault(); // prevent page reload
+                const email = document.getElementById('email').value; // getting email
+                try { 
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, { // sending post request with email provided
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email }) 
+                    })
+                    const data = await response.json(); // Parsing JSON body
+                    document.getElementById('message').textContent = data.message; // displaying message
+                    if (response.ok) {
+                        document.getElementById('subscribe-form').reset();
+                        setTimeout(() => {
+                            document.getElementById('message').textContent = ''; // clearing message after 5 seconds
+                        }, 5000);
+                    }
+                } catch (error) { 
+                    console.error('Error sending email:', error);
+                    document.getElementById('message').textContent = 'An error occurred. Please try again.';
+                }             
+            })
+        </script>
+    </body>
+</html>

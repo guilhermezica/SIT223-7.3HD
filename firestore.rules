@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /posts/{postId} {
+      // Reads go through the Express API, which applies the plan filter using
+      // admin credentials. A client querying Firestore directly would sidestep
+      // that filter entirely, so direct reads are closed.
+      allow read: if false;
+
+      // Post creation goes through the authenticated backend route, which
+      // validates the body and derives authorId from the verified token.
+      allow create: if false;
+
+      allow update, delete: if false;
+    }
+
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+
+      // Signup creates the doc; nobody can create themselves already paid.
+      allow create: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.resource.data.plan == 'free';
+
+      // Profile fields stay editable, but plan must come through the write
+      // unchanged. Only the Admin SDK, which bypasses these rules, can move it.
+      allow update: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.resource.data.plan == resource.data.plan;
+
+      allow delete: if false;
+    }
+  }
+}

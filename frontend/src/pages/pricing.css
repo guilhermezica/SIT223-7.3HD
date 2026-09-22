@@ -1,0 +1,146 @@
+.pricing {
+  padding: 64px 24px 80px;
+}
+
+.pricing-header {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.pricing-header h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.05;
+}
+
+.pricing-header p {
+  color: var(--text-muted);
+}
+
+.eyebrow,
+.plan-label {
+  margin: 0;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pricing-card {
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.pricing-card-featured {
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(106, 27, 122, 0.14);
+}
+
+.pricing-card h2 {
+  margin: 10px 0 4px;
+  font-size: 30px;
+}
+
+.plan-price {
+  margin: 0 0 24px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.plan-price span {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.pricing-card ul {
+  min-height: 112px;
+  margin: 0 0 24px;
+  padding-left: 20px;
+  color: var(--text-muted);
+}
+
+.pricing-card li + li {
+  margin-top: 8px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(45, 19, 56, 0.45);
+  z-index: 10;
+}
+
+.modal-content {
+  width: min(100%, 480px);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 32px;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 20px 50px rgba(45, 19, 56, 0.25);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.payment-form,
+.payment-row,
+.payment-row > div {
+  display: grid;
+  gap: 8px;
+}
+
+.payment-form {
+  margin-top: 24px;
+}
+
+.payment-row {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-error {
+  color: #b42318;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  .pricing {
+    padding: 40px 16px 56px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+}

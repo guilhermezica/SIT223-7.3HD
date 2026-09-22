@@ -1,0 +1,91 @@
+:root {
+  color-scheme: light;
+  --border: #c9c4e0;
+  --bg: #f7f5fb;
+  --surface: #ffffff;
+  --surface-alt: #dbd4ff;
+  --accent: #6a1b7a;
+  --accent-hover: #522060;
+  --text: #2d1338;
+  --text-muted: #6b6b5a;
+  --text-on-accent: #ffffff;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  --content-width: 960px;
+  --control-height: 42px;
+  }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+input {
+  height: var(--control-height);
+  box-sizing: border-box;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+}
+
+button {
+  height: var(--control-height);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 22px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#root {
+  max-width: var(--content-width);
+  margin: 0 auto;   /* auto left/right margins center the block */
+}
+
+.featured-articles button, .featured-tutorials button {
+  display: block;
+  margin: 48px auto;
+}
+
+.page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 56px 24px 0;
+}
+
+.page h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(45, 19, 56, 0.15);
+  text-decoration: none;
+}
+
+.page section + section {
+  margin-top: 80px;
+}
+
+html {
+  scroll-padding-top: 88px;
+}

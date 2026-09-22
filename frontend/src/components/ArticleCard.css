@@ -1,0 +1,57 @@
+.article-list, .tutorial-list {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    gap: 24px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin: 8px;
+}
+
+.card {
+    background: var(--surface); 
+    border: 1px solid var(--surface-alt);
+    gap: 8px;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+}
+
+.card h2, .card h3 {
+    margin: 0;
+    color: var(--text);
+}
+.card h2 {
+    font-size: 20px;
+}
+.card p {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.sectionTitle {
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}

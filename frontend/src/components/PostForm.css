@@ -1,0 +1,72 @@
+.post-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.post-form h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+}
+
+.post-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.post-form label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.post-form input {
+  width: 100%;
+}
+
+.post-form textarea {
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  resize: vertical;
+}
+
+.post-form .error {
+  margin: 0;
+  font-size: 13px;
+  color: #b3261e;
+}
+
+.post-form .plan-options {
+  display: flex;
+  gap: 12px;
+}
+
+.post-form .plan-options label {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.post-form .plan-options label:has(input:checked) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+/* Keep the radio input accessible but visually hidden behind the label */
+.post-form .plan-options input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
