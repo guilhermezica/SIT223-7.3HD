@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    options { timeout(time: 15, unit: 'MINUTES') }
     triggers { pollSCM('H/2 * * * *') }
     stages {
         stage('Build') {
