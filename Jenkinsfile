@@ -15,6 +15,7 @@ pipeline {
                 }
                 dir('backend') {
                     sh 'npm ci'
+                    sh 'npm test'
                 }
                 archiveArtifacts artifacts: 'frontend/dist/**', fingerprint: true
                 dir('backend') {
