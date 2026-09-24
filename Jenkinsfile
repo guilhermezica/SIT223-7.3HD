@@ -1,11 +1,12 @@
 pipeline {
     agent any
     options { timeout(time: 15, unit: 'MINUTES') }
+    tools { nodejs 'node-24' }
     triggers { pollSCM('H/2 * * * *') }
     stages {
         stage('Build') {
             steps {
-                sh 'ls'
+                sh 'node -v && npm -v'
                 echo 'Task: compile the source and package it into a deployable artefact'
                 dir('frontend') {
                     sh 'npm ci'
