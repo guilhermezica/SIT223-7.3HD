@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --reporters=default --reporters=jest-junit",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "jest": "^30.5.2",
+    "jest-junit": "^17.0.0",
     "nodemon": "^3.1.14",
     "supertest": "^7.3.0"
   },

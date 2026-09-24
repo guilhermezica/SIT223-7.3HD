@@ -15,7 +15,6 @@ pipeline {
                 }
                 dir('backend') {
                     sh 'npm ci'
-                    sh 'npm test'
                 }
                 archiveArtifacts artifacts: 'frontend/dist/**', fingerprint: true
                 dir('backend') {
@@ -23,9 +22,14 @@ pipeline {
                 }
             }
         }
+        
         stage('Test') {
             steps {
                 echo 'Task: run unit tests and integration tests'
+                dir('backend') {
+                    sh 'npm test'
+                }
+                junit 'backend/junit.xml'
             }
         }
 
