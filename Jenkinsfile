@@ -15,6 +15,10 @@ pipeline {
                 dir('backend') {
                     sh 'npm ci'
                 }
+                archiveArtifacts artifacts: 'frontend/dist/**', fingerprint: true
+                dir('backend') {
+                   sh "docker build -t devdeakin-backend:${env.BUILD_NUMBER} ."
+                }
             }
         }
         stage('Test') {
@@ -36,6 +40,7 @@ pipeline {
         }
 
         stage('Deploy') {
+            }
             steps {
                 echo 'Task: deploy the packaged app to the staging server'
             }
