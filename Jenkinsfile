@@ -2,6 +2,7 @@ pipeline {
     agent any
     options { timeout(time: 15, unit: 'MINUTES') }
     tools { nodejs 'node-24' }
+    environment { PATH = "/usr/local/bin:${env.PATH}" }
     triggers { pollSCM('H/2 * * * *') }
     stages {
         stage('Build') {
