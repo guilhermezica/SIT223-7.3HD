@@ -7,6 +7,13 @@ pipeline {
             steps {
                 sh 'ls'
                 echo 'Task: compile the source and package it into a deployable artefact'
+                dir('frontend') {
+                    sh 'npm ci'
+                    sh 'npm run build'
+                }
+                dir('backend') {
+                    sh 'npm ci'
+                }
             }
         }
         stage('Test') {
