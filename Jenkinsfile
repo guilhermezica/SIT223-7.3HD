@@ -40,11 +40,11 @@ pipeline {
         }
 
         stage('Deploy') {
-            }
             steps {
                 echo 'Task: deploy the packaged app to the staging server'
             }
-            
+        }
+
         stage('Release') {
             steps {
                 echo 'Release: promote the app to production'
