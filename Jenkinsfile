@@ -36,7 +36,9 @@ pipeline {
 
         stage('Code Quality') {
             steps {
-                echo 'Task: check the code against industry standards'
+                withSonarQubeEnv('SonarCloud') {
+                    sh "${tool 'sonar-scanner'} -Dsonar.projectversion=${env.BUILD_NUMBER}"
+                }
             }
         }
 
