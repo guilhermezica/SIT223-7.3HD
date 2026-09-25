@@ -37,7 +37,7 @@ pipeline {
         stage('Code Quality') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    sh "${tool 'sonar-scanner'} -Dsonar.projectversion=${env.BUILD_NUMBER}"
+                    sh "${tool 'sonar-scanner'}/bin/sonar-scanner -Dsonar.projectVersion=${env.BUILD_NUMBER}"
                 }
             }
         }
