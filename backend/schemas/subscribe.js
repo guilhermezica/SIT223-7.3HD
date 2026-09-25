@@ -1,15 +1,13 @@
 import { z } from 'zod'; // Import Zod
 import express from 'express'; // Import Express
-import sgMail from '@sendgrid/mail'; // Import SendGrid
-import { response } from 'express'; // Import response from express/lib/response.js if needed// Import the server instance
+import sgMail from '@sendgrid/mail'; // Import SendGrid`
 
-const router = express.Router(); // Create a new router instance
-// Middleware
+// Create a new router instance
+const router = express.Router(); 
 
-
-
+// Define a Zod schema for validating the email
 export const subscribeSchema = z.object({ // creating a schema for validating the email
-    email: z.string().email("Please enter a valid email address") // email must be a string and a valid email
+    email: z.email({error: "Please enter a valid email address",}) // email must be a string and a valid email
 });
 
 router.post('/', async (req, res) => {

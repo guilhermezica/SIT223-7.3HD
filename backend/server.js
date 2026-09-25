@@ -4,11 +4,11 @@ import cors from 'cors'; // Import CORS
 import sgMail from '@sendgrid/mail'; // Import SendGrid
 import subscribeRouter from './schemas/subscribe.js'; // Import the subscribe route
 import postsRouter from './routes/posts.js'; // Import the posts route
-const PORT = process.env.PORT || 3000; // Use the port from .env or default to 3000
 // Comma-separated so the deployed site and a local dev server can both be allowed.
-const FRONTEND_ORIGINS = process.env.FRONTEND_ORIGIN.split(',').map((origin) => origin.trim());
+const FRONTEND_ORIGINS = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'.split(',').map((origin) => origin.trim());
 
-const app = express(); // Create an Express app
+const app = express(); // Create an Express app instance
+app.disable('x-powered-by'); // Disable the 'X-Powered-By' header for security reasons
 
 // Middleware
 app.use(cors({ origin: FRONTEND_ORIGINS })); // Enable CORS for all routes
@@ -27,10 +27,5 @@ app.use(express.static('public'));
 // Routes
 app.use('/subscribe', subscribeRouter); // Use the subscribe route
 app.use('/posts', postsRouter); // Use the posts route
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
 
 export default app;

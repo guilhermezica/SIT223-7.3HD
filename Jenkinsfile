@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options { timeout(time: 15, unit: 'MINUTES') }
-    tools { nodejs 'node-24' }
+    tools { nodejs 'node-26' }
     environment { PATH = "/usr/local/bin:${env.PATH}" }
     triggers { pollSCM('H/2 * * * *') }
     stages {
@@ -22,12 +22,13 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test') {
             steps {
-                echo 'Task: run unit tests and integration tests'
-                dir('backend') {
-                    sh 'npm test'
+                withCredentials([string(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
+                    dir('backend') {
+                        sh 'npm test'
+                    }
                 }
                 junit 'backend/junit.xml'
             }

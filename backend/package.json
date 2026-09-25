@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --reporters=default --reporters=jest-junit",
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=26.0.0"
   },
   "keywords": [],
   "author": "",

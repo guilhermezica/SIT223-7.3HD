@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="0.808">
+  <testsuite name="requireAuth" errors="0" failures="0" skipped="0" timestamp="2026-09-25T02:14:38" time="0.464" tests="1">
+    <testcase classname="requireAuth returns 401 when no authorization header is provided" name="requireAuth returns 401 when no authorization header is provided" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2026-09-25T02:14:39" time="0.189" tests="2">
+    <testcase classname=" accepts a valid email" name=" accepts a valid email" time="0.001">
+    </testcase>
+    <testcase classname=" rejects an invalid email" name=" rejects an invalid email" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
