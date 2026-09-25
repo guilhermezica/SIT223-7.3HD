@@ -1,0 +1,18 @@
+groups:
+  - name: production-health
+    rules:
+      - alert: ProductionDown
+        expr: up{job="devdeakin-production"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Production backend is not responding"
+
+      - alert: HighErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[2m])) > 0.1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Production is returning 5xx errors"
