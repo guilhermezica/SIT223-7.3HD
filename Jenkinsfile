@@ -58,7 +58,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Task: deploy the packaged app to the staging server'
+                withCredentials([string(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
+                    sh 'docker rm -f devdeakin-staging || true'
+                    sh "docker run -d --name devdeakin-staging -p 3001:3000 -e FIREBASE_SERVICE_ACCOUNT -e PORT=3000 devdeakin-backend:${env.BUILD_NUMBER}"
+                    sh 'sleep 5'
+                    sh 'curl -fsS http://localhost:3001/posts > /dev/null'
+                }
+                echo 'Staging is up on port 3001'
             }
         }
 
