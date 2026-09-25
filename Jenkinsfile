@@ -71,7 +71,15 @@ pipeline {
 
         stage('Release') {
             steps {
-                echo 'Release: promote the app to production'
+                withCredentials([string(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
+                    sh "docker tag devdeakin-backend:${env.BUILD_NUMBER} devdeakin-backend:production"
+                    sh 'docker rm -f devdeakin-prod || true'
+                    sh 'docker rm -f $(docker ps -aq --filter "publish=3002") 2>/dev/null || true'
+                    sh "docker run -d --name devdeakin-prod -p 3002:3000 -e FIREBASE_SERVICE_ACCOUNT -e PORT=3000 -e NODE_ENV=production devdeakin-backend:production"
+                    sh 'sleep 5'
+                    sh 'curl -fsS http://localhost:3002/posts > /dev/null'
+                }
+                echo "Released build ${env.BUILD_NUMBER} to production on port 3002"
             }
         }
 
