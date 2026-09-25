@@ -50,7 +50,7 @@ pipeline {
                 dir('backend') {
                     sh 'npm audit --audit-level=high'
                 }
-                sh "trivy image --scanners vuln --ignore-unfixed --severity HIGH,CRITICAL --exit-code 1 devdeakin-backend:${env.BUILD_NUMBER}"
+                sh "trivy image --scanners vuln --ignore-unfixed --quiet --severity HIGH,CRITICAL --exit-code 1 devdeakin-backend:${env.BUILD_NUMBER}"
                 sh "trivy image --scanners vuln --format json -o trivy-report.json devdeakin-backend:${env.BUILD_NUMBER}"
                 archiveArtifacts artifacts: 'trivy-report.json', fingerprint: true
             }
