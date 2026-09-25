@@ -5,7 +5,7 @@ import sgMail from '@sendgrid/mail'; // Import SendGrid
 import subscribeRouter from './schemas/subscribe.js'; // Import the subscribe route
 import postsRouter from './routes/posts.js'; // Import the posts route
 // Comma-separated so the deployed site and a local dev server can both be allowed.
-const FRONTEND_ORIGINS = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'.split(',').map((origin) => origin.trim());
+const FRONTEND_ORIGINS = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173').split(',').map((origin) => origin.trim());
 
 const app = express(); // Create an Express app instance
 app.disable('x-powered-by'); // Disable the 'X-Powered-By' header for security reasons
