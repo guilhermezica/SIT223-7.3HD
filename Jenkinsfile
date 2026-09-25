@@ -59,6 +59,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([string(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
+                    sh 'docker rm -f devdeakin-staging || true'
                     sh 'docker rm -f $(docker ps -aq --filter "publish=3001") 2>/dev/null || true'
                     sh "docker run -d --name devdeakin-staging -p 3001:3000 -e FIREBASE_SERVICE_ACCOUNT -e PORT=3000 devdeakin-backend:${env.BUILD_NUMBER}"
                     sh 'sleep 5'
