@@ -85,7 +85,20 @@ pipeline {
 
         stage('Monitoring') {
             steps {
-                echo 'Monitoring: watch production and alert when it breaks'
+                sh 'docker rm -f prometheus || true'
+                sh """
+                    docker run -d --name prometheus -p 9090:9090 \
+                    -v ${env.WORKSPACE}/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml \
+                    -v ${env.WORKSPACE}/monitoring/alert.rules.yml:/etc/prometheus/alert.rules.yml \
+                    prom/prometheus
+                """
+                sh 'sleep 20'
+                sh '''
+                    RESULT=$(curl -fsS 'http://localhost:9090/api/v1/query?query=up{job="devdeakin-production"}' | grep -o '"value":\\[[^]]*\\]')
+                    echo "Production up metric: $RESULT"
+                    echo "$RESULT" | grep -q '"1"' || (echo "Production is not being monitored" && exit 1)
+                '''
+                echo 'Prometheus is scraping staging and production. Dashboard: http://localhost:9090'
             }
         }
     }
