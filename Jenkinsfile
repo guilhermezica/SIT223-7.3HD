@@ -2,7 +2,7 @@ pipeline {
     agent any
     options { timeout(time: 15, unit: 'MINUTES') }
     tools { nodejs 'node-26' }
-    environment { PATH = "/usr/local/bin:${env.PATH}" }
+    environment { PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}" }
     triggers { pollSCM('H/2 * * * *') }
     stages {
         stage('Build') {
@@ -47,7 +47,10 @@ pipeline {
 
         stage('Security') {
             steps {
-                echo 'Task: scan the code and its dependencies for known vulnerabilities'
+                dir('backend') {
+                    sh 'npm audit --audit-level=high'
+                }
+                sh "trivy image --severity HIGH,CRITICAL --exit-code 0 devdeakin-backend:${env.BUILD_NUMBER}"
             }
         }
 
