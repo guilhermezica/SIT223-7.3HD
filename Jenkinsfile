@@ -94,7 +94,9 @@ pipeline {
                 """
                 sh 'sleep 20'
                 sh '''
-                    RESULT=$(curl -fsS 'http://localhost:9090/api/v1/query?query=up{job="devdeakin-production"}' | grep -o '"value":\\[[^]]*\\]')
+                    RESULT=$(curl -fsS --get http://localhost:9090/api/v1/query \
+                    --data-urlencode 'query=up{job="devdeakin-production"}' \
+                    | grep -o '"value":\\[[^]]*\\]')
                     echo "Production up metric: $RESULT"
                     echo "$RESULT" | grep -q '"1"' || (echo "Production is not being monitored" && exit 1)
                 '''
